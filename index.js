@@ -11,19 +11,19 @@ const io = new Server(server, {
 });
 
 io.on('connection', (socket) => {
-  console.log('ユーザー接続:', socket.id);
+  console.log('接続:', socket.id);
 
   socket.on('chat', (msg) => {
     io.emit('chat', msg);
   });
 
   socket.on('disconnect', () => {
-    console.log('ユーザー切断:', socket.id);
+    console.log('切断:', socket.id);
   });
 });
 
 app.get('/', (req, res) => {
-  res.send('チャットサーバー稼働中');
+  res.send('ライブコメントサーバー稼働中');
 });
 
 const PORT = process.env.PORT || 3000;
