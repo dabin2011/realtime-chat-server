@@ -14,14 +14,8 @@ const io = new Server(server, {
 });
 
 io.on('connection', (socket) => {
-  console.log('接続:', socket.id);
-
   socket.on('chat', (msg) => {
     io.emit('chat', msg);
-  });
-
-  socket.on('disconnect', () => {
-    console.log('切断:', socket.id);
   });
 });
 
