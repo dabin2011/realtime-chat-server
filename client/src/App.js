@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import io from 'socket.io-client';
 
-const socket = io('https://your-render-server.onrender.com'); // ← RenderのURLに変更
+const socket = io('https://your-server-name.onrender.com'); // ← RenderのURLに変更
 
 function App() {
   const [messages, setMessages] = useState([]);
@@ -11,6 +11,10 @@ function App() {
     socket.on('chat', (msg) => {
       setMessages((prev) => [...prev, msg]);
     });
+
+    return () => {
+      socket.off('chat');
+    };
   }, []);
 
   const sendText = () => {
